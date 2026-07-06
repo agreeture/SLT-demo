@@ -6,48 +6,122 @@
   <title>SLT Demo</title>
 
   <style>
+    :root {
+      --bg: #f3f5f8;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f4f5f7;
-      color: #222;
+      background:
+        radial-gradient(circle at top left, #e8eefc 0, transparent 32%),
+        var(--bg);
+      color: var(--text);
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
     }
 
     main {
-      width: min(92vw, 900px);
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      width: min(100%, 760px);
     }
 
-    h1 {
-      margin: 0 0 20px;
-      font-size: 1.6rem;
-      font-weight: 650;
+    .header {
       text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .title {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      margin: 8px 0 0;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+    }
+
+    .video-frame {
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000;
     }
 
     video {
-      width: 100%;
-      border-radius: 14px;
-      background: #000;
       display: block;
+      width: 100%;
+      max-height: 70vh;
+      background: #000;
+    }
+
+    .caption {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 24px 14px;
+      }
+
+      main {
+        width: min(100%, 520px);
+      }
+
+      .title {
+        font-size: 1.45rem;
+      }
+
+      .card {
+        padding: 12px;
+        border-radius: 18px;
+      }
+
+      .video-frame {
+        border-radius: 13px;
+      }
     }
   </style>
 </head>
 
 <body>
   <main>
-    <h1>SLT Demo</h1>
+    <div class="header">
+      <h1 class="title">SLT Demo</h1>
+      <p class="subtitle">Mobile voice conversion demo</p>
+    </div>
 
-    <video controls playsinline preload="metadata">
-      <source src="videos/SLT_demo_mic_input.mp4" type="video/mp4" />
-    </video>
+    <section class="card">
+      <div class="video-frame">
+        <video controls playsinline preload="metadata">
+          <source src="viteos/SLT_demo_mic_input_web.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="caption">Microphone Input</div>
+    </section>
   </main>
 </body>
 </html>
