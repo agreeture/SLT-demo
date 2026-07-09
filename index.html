@@ -85,11 +85,20 @@
     }
 
     .video-card {
-      max-width: 760px;
+      max-width: 980px;
       margin: 0 auto;
     }
 
+    .demo-media-grid {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.95fr) minmax(220px, 0.75fr);
+      gap: 16px;
+      align-items: center;
+    }
+
     .video-frame {
+      width: min(100%, 380px);
+      margin: 0 auto;
       border-radius: 16px;
       overflow: hidden;
       background: #000;
@@ -98,12 +107,13 @@
     video {
       display: block;
       width: 100%;
-      max-height: 66vh;
+      max-height: 64vh;
       background: #000;
     }
 
     .setup-image {
-      margin-top: 14px;
+      width: min(100%, 360px);
+      margin: 0 auto;
       border-radius: 16px;
       overflow: hidden;
       border: 1px solid var(--line);
@@ -113,7 +123,9 @@
     .setup-image img {
       display: block;
       width: 100%;
-      height: auto;
+      max-height: 360px;
+      object-fit: contain;
+      background: #f8fafc;
     }
 
     .caption {
@@ -142,7 +154,6 @@
       text-transform: uppercase;
       color: var(--muted);
     }
-
 
     .demo-steps {
       margin-top: 14px;
@@ -238,6 +249,24 @@
       display: none;
     }
 
+    @media (max-width: 820px) {
+      .demo-media-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .video-frame {
+        width: min(100%, 360px);
+      }
+
+      .setup-image {
+        width: min(100%, 320px);
+      }
+
+      .setup-image img {
+        max-height: 300px;
+      }
+    }
+
     @media (max-width: 720px) {
       body {
         padding: 26px 14px 42px;
@@ -248,11 +277,8 @@
         border-radius: 18px;
       }
 
-      .video-card {
-        max-width: 100%;
-      }
-
-      .video-frame {
+      .video-frame,
+      .setup-image {
         border-radius: 13px;
       }
 
@@ -315,14 +341,18 @@
       <h2 class="section-title">Mobile Demo</h2>
 
       <div class="card video-card">
-        <div class="video-frame">
-          <video controls playsinline preload="metadata">
-            <source src="videos/SLT_demo_mic_input.mp4" type="video/mp4" />
-          </video>
-        </div>
+        <div class="demo-media-grid">
+          <div>
+            <div class="video-frame">
+              <video controls playsinline preload="metadata">
+                <source src="videos/SLT_demo_mic_input.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
 
-        <div class="setup-image">
-          <img src="images/SLT_demo_setup.png" alt="SLT demo setup" />
+          <div class="setup-image">
+            <img src="images/SLT_demo_setup.png" alt="SLT demo setup" />
+          </div>
         </div>
 
         <div class="caption">Mobile voice conversion demo</div>
@@ -341,20 +371,12 @@
             <li>Play the converted speech.</li>
           </ol>
         </div>
-
-        <div class="note">
-          This demo video uses speech from the same female speaker in the JSUT corpus.
-          The speech has been preloaded onto the mobile device and converted on the device.
-          Because the microphone quality of the mobile device is limited, microphone-input speech cannot be converted without fine-tuning.
-          We will provide a fine-tuned version before the conference.
-        </div>
       </div>
     </section>
 
     <section class="section">
       <h2 class="section-title">Audio Demo</h2>
       <p class="section-note">The audio demo samples use the same female speaker from the JSUT corpus.</p>
-
 
       <div class="card">
         <div class="table-wrap">
